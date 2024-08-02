@@ -1,0 +1,41 @@
+const express = require("express");
+const colors=require("colors");
+const morgan = require("morgan");
+const path = require("path");
+const dotenv=require("dotenv").config();
+const products=require("./utility/product.json");
+const rootroute=require("./routes/rootroutes.js");
+const PORT=7000 || 8000;
+const app = express();
+// app.use(express.json());
+// app.use(express.static(path.resolve(__dirname,'./public')))
+app.use(morgan("dev"));
+app.use(express.json());
+
+// app.get('/',(req,res)=>{
+//     res.send('hello');
+// });
+// 
+// app.get("/home",(req,res)=>
+// {
+//     res.sendFile(path.resolve(__dirname,"./public","public.html"));
+// });
+
+// app.get("/digitalwatch",(req,res)=>
+//     {
+//         res.sendFile(path.resolve(__dirname,"./public","digitalwatch.html"));
+//     });
+    
+// app.get("/product",(req,res)=>
+//     {
+//         res.sendFile(path.resolve(__dirname,"./utility","product.json"));
+//     });
+
+app.use("/",rootroute);
+
+app.listen(PORT, ()=>
+{
+    console.log("servers is on");
+})
+
+
